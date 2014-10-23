@@ -14,11 +14,27 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
+          console.log(streams)
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
           index -= 1;
         }
+
+        var $button = $('<button class = "new-tweets">Show new tweets</button>')
+        $button.appendTo($body)
+        
+
+
+
+        // console.log(users)
+        // for (var i = 0; i < users.length; i++) {
+        //   var $header = $('<h2></h2>')
+        //   $header.text(users[i])
+        //   $header.appendTo($body)
+        // }
+
+
 
       });
 
