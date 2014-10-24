@@ -56,12 +56,18 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          // console.log(tweet)
           
           var $tweetDiv = $('<div></div>');
 
+          var $userLink = $('<a href = "" class = ".user-timeline"></a>')
+          $userLink.text("@" + tweet.user)
+
+
           var $tweetContent = $('<p></p>')
-          $tweetContent.text('@' + tweet.user + ': ' + tweet.message);
+          $tweetContent.text(': ' + tweet.message);
+          $tweetContent.prepend($userLink)
+
+       
 
           var $timestamp = $("<p></p>")
           $timestamp.text(tweet.created_at)
