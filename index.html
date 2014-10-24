@@ -59,7 +59,7 @@
           
           var $tweetDiv = $('<div></div>');
 
-          var $userLink = $('<a href = "" class = ".user-timeline"></a>')
+          var $userLink = $('<a href = "" class = "user-timeline"></a>')
           $userLink.text("@" + tweet.user)
 
 
@@ -93,6 +93,40 @@
 
         var $userTimeline = $("<div id = 'timeline'></div>")
         $userTimeline.appendTo($body)
+
+        $('.user-timeline').on('mouseover', function() {
+        
+          
+          var user = $(this).text()
+          var username = user.slice(1, user.length)
+
+          var $userHeader = $('<h2></h2>')
+          $userHeader.text(user)
+          $userTimeline.append($userHeader)
+
+          var $pastTweets = $("<h4>Past Tweets</h4>")
+          $userTimeline.append($pastTweets)
+          
+
+          var otherUsers = streams.users
+          var userTweets = []
+          for (var key in otherUsers) {
+            if (key === username) {
+              userTweets = otherUsers[key]
+            }
+          }
+
+          for (var i = 0; i < userTweets.length; i++) {
+            var $node = $("<p></p>")
+           
+            $node.text(userTweets[i].message)
+            $node.appendTo($userTimeline)
+          }
+         })
+
+        $('.user-timeline').on('mouseout', function() {
+          $userTimeline.empty();
+        })
 
 
       });
