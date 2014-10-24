@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <style>
+
+/*  .new-tweets {
+    margin:0 auto;
+  }*/
+  #tweets {
+    padding:10px;
+    border:solid 1px blue;
+    width:40%;
+    float:left;
+  }
+  #timeline {
+    padding:10px;
+    border: solid 1px black;
+    float:right;
+    width:40%;
+  }
+
+  </style>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
@@ -33,10 +52,11 @@
         $tweets.css("display", "none")
         $tweets.appendTo($body)
       
-
+        
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
+          // console.log(tweet)
           
           var $tweetDiv = $('<div></div>');
 
@@ -45,8 +65,6 @@
 
           var $timestamp = $("<p></p>")
           $timestamp.text(tweet.created_at)
-          console.log(tweet.created_at)
-
 
           $tweetContent.appendTo($tweetDiv);
           $timestamp.appendTo($tweetDiv);
@@ -56,9 +74,6 @@
           lineSpace.appendTo($tweets)
           index -= 1;
         }
-
-
-
 
         $('.new-tweets').on('click', function() {
           var buttonText = $('.new-tweets').text()
@@ -70,6 +85,8 @@
           $tweets.slideToggle("slow");
         })
 
+        var $userTimeline = $("<div id = 'timeline'></div>")
+        $userTimeline.appendTo($body)
 
 
       });
