@@ -6,6 +6,9 @@
 /*  .new-tweets {
     margin:0 auto;
   }*/
+  .button-div {
+    text-align:center;
+  }
   #tweets {
     padding:10px;
     /*top:20px;*/
@@ -15,8 +18,9 @@
   }
   #timeline {
     padding:10px;
-   /* border: solid 1px black;*/
-    float:right;
+/*    border: solid 1px black;
+*/    float:right;
+  
     width:40%;
   }
 
@@ -48,8 +52,11 @@
         var $body = $('body');
         $body.html('');
 
+        var $buttonDiv = $("<div class = 'button-div'></div>")
+
        var $button = $('<button class = "new-tweets btn btn-default">Show new tweets</button>')
-        $button.appendTo($body)
+        $button.appendTo($buttonDiv)
+        $buttonDiv.appendTo($body)
 
         var $tweets = $("<div id = 'tweets'></div>")
         $tweets.css("display", "none")
