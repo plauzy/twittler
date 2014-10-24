@@ -8,20 +8,23 @@
   }*/
   #tweets {
     padding:10px;
-    border:solid 1px blue;
+    /*top:20px;*/
+ /*   border:solid 1px blue;*/
     width:40%;
     float:left;
   }
   #timeline {
     padding:10px;
-    border: solid 1px black;
+   /* border: solid 1px black;*/
     float:right;
     width:40%;
   }
 
+
   </style>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   </head>
   <body>
     <script>
@@ -45,7 +48,7 @@
         var $body = $('body');
         $body.html('');
 
-       var $button = $('<button class = "new-tweets">Show new tweets</button>')
+       var $button = $('<button class = "new-tweets btn btn-default">Show new tweets</button>')
         $button.appendTo($body)
 
         var $tweets = $("<div id = 'tweets'></div>")
@@ -92,6 +95,7 @@
         })
 
         var $userTimeline = $("<div id = 'timeline'></div>")
+        $userTimeline.css("display","none")
         $userTimeline.appendTo($body)
 
         $('.user-timeline').on('mouseover', function() {
@@ -121,11 +125,16 @@
            
             $node.text(userTweets[i].message)
             $node.appendTo($userTimeline)
+            $userTimeline.slideDown("fast")
           }
          })
 
         $('.user-timeline').on('mouseout', function() {
           $userTimeline.empty();
+         // setTimeout(function() {
+         //    $userTimeline.slideUp("fast");
+         // }, 1000)
+         
         })
 
 
