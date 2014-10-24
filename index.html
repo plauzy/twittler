@@ -7,32 +7,68 @@
   <body>
     <script>
 
+      // $(document).ready(function(){
+      //   var $body = $('body');
+      //   $body.html('');
+
+      //   var index = streams.home.length - 1;
+      //   console.log(streams)
+      //   while(index >= 0){
+      //     var tweet = streams.home[index];
+          
+      //     var $tweetDiv = $('<div></div>');
+      //     $tweet.text('@' + tweet.user + ': ' + tweet.message);
+      //     $tweet.appendTo($body);
+      //     index -= 1;
+      //   }
+
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
 
+       var $button = $('<button class = "new-tweets">Show new tweets</button>')
+        $button.appendTo($body)
+
+        var $tweets = $("<div id = 'tweets'></div>")
+        $tweets.css("display", "none")
+        $tweets.appendTo($body)
+      
+
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          console.log(streams)
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          
+          var $tweetDiv = $('<div></div>');
+
+          var $tweetContent = $('<p></p>')
+          $tweetContent.text('@' + tweet.user + ': ' + tweet.message);
+
+          var $timestamp = $("<p></p>")
+          $timestamp.text(tweet.created_at)
+          console.log(tweet.created_at)
+
+
+          $tweetContent.appendTo($tweetDiv);
+          $timestamp.appendTo($tweetDiv);
+          $tweetDiv.appendTo($tweets);
+
+          var lineSpace = $("<br><br>")
+          lineSpace.appendTo($tweets)
           index -= 1;
         }
 
-        var $button = $('<button class = "new-tweets">Show new tweets</button>')
-        $button.appendTo($body)
-        
 
 
 
-        // console.log(users)
-        // for (var i = 0; i < users.length; i++) {
-        //   var $header = $('<h2></h2>')
-        //   $header.text(users[i])
-        //   $header.appendTo($body)
-        // }
+        $('.new-tweets').on('click', function() {
+          var buttonText = $('.new-tweets').text()
+          if (buttonText === "Show new tweets") {
+            $('.new-tweets').text("Hide tweets")
+          } else {
+            $('.new-tweets').text("Show new tweets")
+          }
+          $tweets.slideToggle("slow");
+        })
 
 
 
